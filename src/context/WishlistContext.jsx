@@ -20,12 +20,12 @@ export const WishlistProvider = ({ children }) => {
       const isExisting = prev.find((item) => item.id === product.id);
       if (isExisting) {
         // Notification logic
-        toast.dismiss(); // Purani notification hatao
+        toast.dismiss(); 
         toast.info("Removed from Wishlist", { theme: "light" });
         return prev.filter((item) => item.id !== product.id);
       } else {
         // Notification logic
-        toast.dismiss(); // Purani notification hatao
+        toast.dismiss(); 
         toast.success("Added to Wishlist ❤️", { theme: "light" });
         return [...prev, product];
       }

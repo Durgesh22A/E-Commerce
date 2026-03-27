@@ -6,7 +6,6 @@ import { FaTrash } from 'react-icons/fa';
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
   
-  // Total calculate karna
   const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (cartItems.length === 0) {
@@ -28,7 +27,7 @@ const Cart = () => {
       {cartItems.map((item) => (
         <div key={item.id} style={{ 
           display: 'flex', 
-          flexWrap: 'wrap', /* 📱 Mobile Fix: Choti screen par items wrap honge */
+          flexWrap: 'wrap', 
           alignItems: 'center', 
           justifyContent: 'space-between', 
           padding: '15px', 
@@ -38,7 +37,6 @@ const Cart = () => {
           boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
           gap: '15px'
         }}>
-          {/* 🐛 Image Bug Fix: src mein item.thumbnail use kiya hai */}
           <img src={item.thumbnail} alt={item.title} style={{ width: '80px', height: '80px', objectFit: 'contain', backgroundColor: '#f8f9fa', borderRadius: '8px', padding: '5px' }} />
           
           <div style={{ flex: 1, minWidth: '200px' }}>

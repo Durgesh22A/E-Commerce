@@ -21,7 +21,7 @@ const Navbar = () => {
       position: 'sticky', 
       top: 0, 
       zIndex: 100,
-      flexWrap: 'wrap', /* 📱 Mobile Fix: Screen choti hone par items niche aayenge */
+      flexWrap: 'wrap',
       gap: '15px'
     }}>
       <h2>
@@ -35,7 +35,7 @@ const Navbar = () => {
         gap: '20px', 
         alignItems: 'center', 
         fontWeight: '600',
-        flexWrap: 'wrap', /* 📱 Mobile Fix */
+        flexWrap: 'wrap',
         justifyContent: 'center'
       }}>
         <Link to="/" style={{ color: '#636e72', textDecoration: 'none', fontSize: '16px', transition: '0.3s' }}>Home</Link>
@@ -54,7 +54,6 @@ const Navbar = () => {
         {/* Cart Link */}
         <Link to="/cart" style={{ color: '#ffffff', textDecoration: 'none', fontSize: '16px', display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#0984e3', padding: '8px 15px', borderRadius: '30px', boxShadow: '0 4px 10px rgba(9, 132, 227, 0.3)' }}>
           <FaShoppingCart />
-          {/* Mobile par space bachane ke liye sirf number dikhayenge */}
           <span style={{ fontWeight: 'bold' }}>{cartCount > 0 ? cartCount : 'Cart'}</span>
         </Link>
       </div>

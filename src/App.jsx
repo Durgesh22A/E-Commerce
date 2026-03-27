@@ -2,17 +2,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Context Providers
 import { CartProvider } from "./context/CartContext";
-import { WishlistProvider } from "./context/WishlistContext"; // Added
+import { WishlistProvider } from "./context/WishlistContext";
 
-// Components & Pages
 import Navbar from "./components/Navbar";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import Wishlist from "./pages/Wishlist"; // Added
+import Wishlist from "./pages/Wishlist";
 
 const Home = () => (
   <div style={{ textAlign: "center", marginTop: "80px", color: "white" }}>
@@ -42,7 +40,6 @@ function App() {
   return (
     <WishlistProvider>
       {" "}
-      {/* Wrap around app */}
       <CartProvider>
         <Router>
           <Navbar />
@@ -60,7 +57,6 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/wishlist" element={<Wishlist />} />{" "}
-              {/* New Route */}
             </Routes>
           </div>
           <ToastContainer

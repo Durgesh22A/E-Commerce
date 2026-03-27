@@ -10,9 +10,8 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState("default");
 
-  // Naya State: Pagination ke liye
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12; // Ek page par 12 items
+  const itemsPerPage = 12;
 
   const debouncedSearch = useDebounce(searchTerm, 500);
 
@@ -37,7 +36,7 @@ const Products = () => {
     } else if (sortOrder === "price-high") {
       result = [...result].sort((a, b) => b.price - a.price);
     } else if (sortOrder === "rating") {
-      result = [...result].sort((a, b) => b.rating - a.rating); // DummyJSON uses 'rating' not 'rating.rate'
+      result = [...result].sort((a, b) => b.rating - a.rating);
     }
     return result;
   }, [products, debouncedSearch, selectedCategory, sortOrder]);

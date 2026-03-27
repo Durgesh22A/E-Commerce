@@ -4,31 +4,29 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif; /* Modern premium font */
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   background-color: #f4f6f8;
   color: #2d3436;
-  overflow-x: hidden; /* X-axis scroll ko roknay ke liye */
+  overflow-x: hidden;
 }
 
-/* Custom Premium Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0984e3; 
+  background: #0984e3;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #076bbb; 
+  background: #076bbb;
 }
 
-/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
 }

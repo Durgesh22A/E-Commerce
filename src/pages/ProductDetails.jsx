@@ -20,13 +20,10 @@ const ProductDetails = () => {
     const getProductData = async () => {
       try {
         setLoading(true);
-        // Pehle main product fetch karo
         const data = await fetchProductById(id);
         setProduct(data);
 
-        // Phir uski category ke related products fetch karo
         const related = await fetchProductsByCategory(data.category);
-        // Main product ko related list se hatao aur sirf 4 items lo
         const filteredRelated = related
           .filter((item) => item.id !== data.id)
           .slice(0, 4);
@@ -38,7 +35,7 @@ const ProductDetails = () => {
       }
     };
     getProductData();
-  }, [id]); // id change hone par dubara chalega
+  }, [id]);
 
   if (loading)
     return (

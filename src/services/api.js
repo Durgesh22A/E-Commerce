@@ -3,7 +3,6 @@ import axios from 'axios';
 const BASE_URL = 'https://dummyjson.com';
 
 export const fetchProducts = async () => {
-    // Yahan humne limit=0 kar diya hai, jisse DummyJSON apne saare (190+) products bhej dega
     const response = await axios.get(`${BASE_URL}/products?limit=0`);
     return response.data.products;
 };
