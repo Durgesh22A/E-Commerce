@@ -1,222 +1,70 @@
-import React from "react";
-import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import React from 'react';
+import { useCart } from '../context/CartContext';
+import { Link } from 'react-router-dom';
+import { FaTrash } from 'react-icons/fa';
 
 const Cart = () => {
-  const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
+  const { cartItems, removeFromCart, updateQuantity } = useCart();
+  
+  // Total calculate karna
+  const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (cartItems.length === 0) {
     return (
-      <div style={{ textAlign: "center", marginTop: "100px", color: "white" }}>
+      <div style={{ textAlign: 'center', marginTop: '100px', padding: '20px' }}>
         <h2>Your Cart is Empty 🛒</h2>
-        <p style={{ color: "#888", marginBottom: "20px" }}>
-          Looks like you haven't added anything yet.
-        </p>
-        <Link
-          to="/products"
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#3b82f6",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "5px",
-          }}
-        >
-          Start Shopping
+        <p style={{ color: '#888', marginBottom: '20px' }}>Looks like you haven't added anything yet.</p>
+        <Link to="/products" style={{ padding: '10px 20px', backgroundColor: '#0984e3', color: 'white', textDecoration: 'none', borderRadius: '8px', fontWeight: 'bold' }}>
+          Go Shopping
         </Link>
       </div>
     );
   }
 
   return (
-    <div
-      style={{
-        maxWidth: "1200px",
-        margin: "40px auto",
-        padding: "20px",
-        display: "flex",
-        gap: "30px",
-        flexWrap: "wrap",
-        color: "white",
-      }}
-    >
-      {/* Cart Items List */}
-      <div style={{ flex: 2, minWidth: "300px" }}>
-        <h2>Shopping Cart</h2>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "15px",
-            marginTop: "20px",
-          }}
-        >
-          {cartItems.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-                backgroundColor: "#1a1a1a",
-                padding: "15px",
-                borderRadius: "10px",
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: "white",
-                  padding: "5px",
-                  borderRadius: "5px",
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    objectFit: "contain",
-                  }}
-                />
-              </div>
-              <div style={{ flex: 1 }}>
-                <h4 style={{ margin: "0 0 5px 0" }}>
-                  {item.title.substring(0, 30)}...
-                </h4>
-                <p style={{ margin: 0, color: "#4ade80", fontWeight: "bold" }}>
-                  ${item.price}
-                </p>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  backgroundColor: "#333",
-                  padding: "5px",
-                  borderRadius: "5px",
-                }}
-              >
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  style={{
-                    padding: "5px 10px",
-                    backgroundColor: "#444",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                  }}
-                >
-                  -
-                </button>
-                <span style={{ width: "20px", textAlign: "center" }}>
-                  {item.quantity}
-                </span>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  style={{
-                    padding: "5px 10px",
-                    backgroundColor: "#444",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                  }}
-                >
-                  +
-                </button>
-              </div>
-
-              <strong style={{ width: "80px", textAlign: "right" }}>
-                ${(item.price * item.quantity).toFixed(2)}
-              </strong>
-
-              <button
-                onClick={() => removeFromCart(item.id)}
-                style={{
-                  color: "#ff4757",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "18px",
-                }}
-              >
-                <FaTrash />
-              </button>
-            </div>
-          ))}
+    <div style={{ maxWidth: '900px', margin: '40px auto', padding: '20px' }}>
+      <h2 style={{ borderBottom: '2px solid #eee', paddingBottom: '10px', marginBottom: '20px' }}>Shopping Cart</h2>
+      
+      {cartItems.map((item) => (
+        <div key={item.id} style={{ 
+          display: 'flex', 
+          flexWrap: 'wrap', /* 📱 Mobile Fix: Choti screen par items wrap honge */
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          padding: '15px', 
+          backgroundColor: '#fff', 
+          borderRadius: '10px', 
+          marginBottom: '15px', 
+          boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+          gap: '15px'
+        }}>
+          {/* 🐛 Image Bug Fix: src mein item.thumbnail use kiya hai */}
+          <img src={item.thumbnail} alt={item.title} style={{ width: '80px', height: '80px', objectFit: 'contain', backgroundColor: '#f8f9fa', borderRadius: '8px', padding: '5px' }} />
+          
+          <div style={{ flex: 1, minWidth: '200px' }}>
+            <h4 style={{ margin: '0 0 5px 0', color: '#2d3436' }}>{item.title}</h4>
+            <p style={{ margin: 0, color: '#0984e3', fontWeight: 'bold' }}>${item.price}</p>
+          </div>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', backgroundColor: '#f1f2f6', padding: '5px 10px', borderRadius: '8px' }}>
+            <button onClick={() => updateQuantity(item.id, item.quantity - 1)} style={{ border: 'none', background: 'none', fontSize: '18px', cursor: 'pointer', fontWeight: 'bold' }}>-</button>
+            <span style={{ fontWeight: 'bold', width: '20px', textAlign: 'center' }}>{item.quantity}</span>
+            <button onClick={() => updateQuantity(item.id, item.quantity + 1)} style={{ border: 'none', background: 'none', fontSize: '18px', cursor: 'pointer', fontWeight: 'bold' }}>+</button>
+          </div>
+          
+          <button 
+            onClick={() => removeFromCart(item.id)} 
+            style={{ color: '#ff4757', border: 'none', background: 'none', cursor: 'pointer', fontSize: '18px', padding: '10px' }}
+            title="Remove Item"
+          >
+            <FaTrash />
+          </button>
         </div>
-      </div>
-
-      {/* Order Summary */}
-      <div
-        style={{
-          flex: 1,
-          minWidth: "300px",
-          backgroundColor: "#1a1a1a",
-          padding: "25px",
-          borderRadius: "10px",
-          height: "fit-content",
-        }}
-      >
-        <h3>Order Summary</h3>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "20px 0",
-            color: "#ccc",
-          }}
-        >
-          <span>Subtotal</span>
-          <span>${cartTotal.toFixed(2)}</span>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "20px 0",
-            color: "#ccc",
-          }}
-        >
-          <span>Tax (5%)</span>
-          <span>${(cartTotal * 0.05).toFixed(2)}</span>
-        </div>
-        <hr style={{ borderColor: "#333" }} />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "20px 0",
-            fontSize: "20px",
-            fontWeight: "bold",
-          }}
-        >
-          <span>Total</span>
-          <span style={{ color: "#4ade80" }}>
-            ${(cartTotal * 1.05).toFixed(2)}
-          </span>
-        </div>
-
-        <Link
-          to="/checkout"
-          style={{
-            display: "block",
-            textAlign: "center",
-            width: "100%",
-            padding: "15px",
-            backgroundColor: "#3b82f6",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "5px",
-            fontWeight: "bold",
-            boxSizing: "border-box",
-          }}
-        >
+      ))}
+      
+      <div style={{ textAlign: 'right', marginTop: '30px', padding: '20px', backgroundColor: '#fff', borderRadius: '10px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
+        <h3 style={{ fontSize: '24px', margin: '0 0 15px 0' }}>Total: <span style={{ color: '#0984e3' }}>${totalAmount.toFixed(2)}</span></h3>
+        <Link to="/checkout" style={{ padding: '12px 25px', backgroundColor: '#00b894', color: 'white', textDecoration: 'none', borderRadius: '8px', display: 'inline-block', fontWeight: 'bold', fontSize: '16px', boxShadow: '0 4px 10px rgba(0, 184, 148, 0.3)' }}>
           Proceed to Checkout
         </Link>
       </div>
