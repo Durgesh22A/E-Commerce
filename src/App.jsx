@@ -16,7 +16,7 @@ import Wishlist from "./pages/Wishlist"; // Added
 
 const Home = () => (
   <div style={{ textAlign: "center", marginTop: "80px", color: "white" }}>
-    <h1 style={{ fontSize: "48px" }}>Welcome to ShopStore 🛍️</h1>
+    <h1 style={{ fontSize: "48px", color: "#cccccc" }}>Welcome to ShopStore 🛍️</h1>
     <p style={{ fontSize: "20px", color: "#ccc" }}>
       Discover the best products at unbeatable prices.
     </p>
