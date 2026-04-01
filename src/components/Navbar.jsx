@@ -10,16 +10,16 @@ const Navbar = () => {
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <nav style={{ 
-      display: 'flex', 
-      justifyContent: 'space-between', 
-      padding: '15px 5%', 
-      backgroundColor: '#ffffff', 
-      boxShadow: '0 4px 12px rgba(0,0,0,0.05)', 
-      color: '#333', 
-      alignItems: 'center', 
-      position: 'sticky', 
-      top: 0, 
+    <nav style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '15px 5%',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+      color: '#333',
+      alignItems: 'center',
+      position: 'sticky',
+      top: 0,
       zIndex: 100,
       flexWrap: 'wrap',
       gap: '15px'
@@ -30,10 +30,10 @@ const Navbar = () => {
         </Link>
       </h2>
       
-      <div style={{ 
-        display: 'flex', 
-        gap: '20px', 
-        alignItems: 'center', 
+      <div style={{
+        display: 'flex',
+        gap: '20px',
+        alignItems: 'center',
         fontWeight: '600',
         flexWrap: 'wrap',
         justifyContent: 'center'
