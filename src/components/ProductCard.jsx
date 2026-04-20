@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { toast } from "react-toastify";
 import { FaHeart, FaRegHeart, FaShoppingCart } from "react-icons/fa";
-import { motion } from "framer-motion"; // Animation ke liye
+import { motion } from "framer-motion";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
