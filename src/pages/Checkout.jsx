@@ -6,7 +6,6 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-// Validation Schema
 const schema = yup.object().shape({
   fullName: yup.string().required("Full Name is required"),
   email: yup
@@ -36,14 +35,12 @@ const Checkout = () => {
   });
 
   const onSubmit = (data) => {
-    // Yahan actual app me backend API call hoti hai
     console.log("Order Data:", data);
     toast.success("Order Placed Successfully! 🎉", { theme: "dark" });
 
-    // Clear cart in real app aur redirect
     setTimeout(() => {
       navigate("/");
-      window.location.reload(); // Simple way to clear local storage context state for now
+      window.location.reload();
     }, 2000);
   };
 
