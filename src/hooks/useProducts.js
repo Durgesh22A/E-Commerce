@@ -15,7 +15,6 @@ export const useProducts = () => {
 
                 setProducts(productsData);
 
-                // Set() duplicate values ko automatically hata deta hai
                 const uniqueCategories = [...new Set(productsData.map(item => item.category))];
 
                 setCategories(uniqueCategories);
