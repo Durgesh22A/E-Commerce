@@ -15,7 +15,6 @@ const Products = () => {
 
   const debouncedSearch = useDebounce(searchTerm, 500);
 
-  // Jab bhi user search/filter kare, use Page 1 par bhej do
   useEffect(() => {
     setCurrentPage(1);
   }, [debouncedSearch, selectedCategory, sortOrder]);
@@ -41,7 +40,6 @@ const Products = () => {
     return result;
   }, [products, debouncedSearch, selectedCategory, sortOrder]);
 
-  // Pagination Logic Calculate karna
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProducts = filteredProducts.slice(
