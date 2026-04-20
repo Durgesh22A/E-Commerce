@@ -14,7 +14,6 @@ const ProductDetails = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    // Page top par scroll karne ke liye
     window.scrollTo(0, 0);
 
     const getProductData = async () => {
